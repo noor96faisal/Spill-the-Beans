@@ -17,8 +17,6 @@ class Category(models.Model):
     name = models.CharField(max_length=100)
     icon = models.ImageField(upload_to='category_icons/', blank=True, null=True)
 
-    class Meta:
-        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
@@ -33,11 +31,9 @@ class Recipe(models.Model):
     
 class BrewingMethod(models.Model):
     name = models.CharField(max_length=100)
-    description = models.TextField()
-    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
-    contributor = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    icon = models.ImageField(upload_to='method_icons/', blank=True, null=True)
 
-    def  __str__(self):
+    def __str__(self):
         return self.name
     
 class Reaction(models.Model):

@@ -3,11 +3,30 @@
 <html>
   <head>
     <title>Add Recipe</title>
-    <link rel="stylesheet" href="{% static 'main_app/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
   </head>
 
   <body>
-    <h1>Add a New Brewing Method</h1>
-    <p>Add Your Favorite Method Here</p>
+    <div class="login-container">
+      <h2>Add a New Brewing Method ☕</h2>
+      <form method="post">
+        {% csrf_token %}
+        <input
+          type="text"
+          name="method_name"
+          placeholder="Method Name"
+          required
+        />
+        <input type="text" name="category" placeholder="Category" required />
+        <textarea
+          name="description"
+          placeholder="Describe the method..."
+          rows="4"
+          style="resize: none"
+        ></textarea>
+        <button type="submit" class="login-button">Submit</button>
+      </form>
+      <p class="auth-links"><a href="{% url 'home' %}">← Back to Home</a></p>
+    </div>
   </body>
 </html>

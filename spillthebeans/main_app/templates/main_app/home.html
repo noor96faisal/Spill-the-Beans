@@ -6,14 +6,12 @@
     <title>Choose a Method</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
   </head>
   <body>
     <header>Spill the Beans☕︎</header>
 
+    <!-- Auth -->
     <div class="auth-links">
       {% if user.is_authenticated %}
         <p>
@@ -28,37 +26,31 @@
       {% endif %}
     </div>
 
+    <!-- Brewing Methods -->
+    <div class="method-grid">
+      {% for method in methods %}
+        <div class="method-card">
+          {% if method.icon %}
+            <img src="{{ method.icon.url }}" alt="{{ method.name }}">
+          {% endif %}
+          <span>{{ method.name }}</span>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Categories -->
     <div class="category-list">
       {% for category in categories %}
-      <div class="category">
-        {% if category.icon %}
-        <img
-          src="{{ category.icon.url }}"
-          alt="{{ category.name }}"
-          class="category-icon"
-        />
-        {% endif %} {{ category.name }}
-      </div>
+        <div class="category">
+          {% if category.icon %}
+            <img src="{{ category.icon.url }}" class="category-icon" />
+          {% endif %}
+          {{ category.name }}
+        </div>
       {% endfor %}
     </div>
 
-    <div class="method-list">
-      {% for method in methods %}
-      <div class="method">
-        <img
-          src="{% static 'coffee/icons/'|add:method.name|add:'.png' %}"
-          alt="{{ method.name }}"
-        />
-        <div>{{ method.name }}</div>
-      </div>
-      {% endfor %}
-    </div>
-
-    <a
-      href="{% url 'add_recipe' %}"
-      class="add-button"
-      title="Add a new recipe!"
-      >⛾</a
-    >
+    <!-- Add Recipe Button -->
+    <a href="{% url 'add_recipe' %}" class="add-button" title="Add a new recipe!">⛾</a>
   </body>
 </html>
