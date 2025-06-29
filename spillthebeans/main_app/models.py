@@ -1,5 +1,7 @@
 from django.db import models
 from django.urls import reverse
+from django.contrib.auth.models import User
+
 # Create your models here.
 
 class Profile(models.Model):
@@ -16,3 +18,28 @@ class Category(models.Model):
 
     def __str__(self):
         return self.name
+    
+class Recipe(models.Model):
+    instructions = models.TextField()
+    is_iced = models.BooleanField(default=False)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.category.name} Recipe"
+    
+class BrewingMethod(models.Model):
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    contributor = models.ForeignKey(Profile, on_delete=models.CASCADE)
+
+    def  __str__(self):
+        return self.name
+    
+class Reaction(models.Model):
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    like = models.BooleanField()
+
+    def  __str__(self):
+        return f"{'Like' if self.like else 'Dislike'} by {self.profile.username}"
