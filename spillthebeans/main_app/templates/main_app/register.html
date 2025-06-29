@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Create an Account ☕</h2>
+
+      <form method="post">
+        {% csrf_token %}
+
+        <input
+          type="text"
+          name="username"
+          placeholder="Username"
+          value="{{ form.username.value|default:'' }}"
+          required
+        />
+        {% if form.username.errors %}
+        <p class="form-error">{{ form.username.errors.0 }}</p>
+        {% endif %}
+
+        <input
+          type="password"
+          name="password1"
+          placeholder="Password"
+          required
+        />
+        {% if form.password1.errors %}
+        <p class="form-error">{{ form.password1.errors.0 }}</p>
+        {% endif %}
+
+        <input
+          type="password"
+          name="password2"
+          placeholder="Confirm Password"
+          required
+        />
+        {% if form.password2.errors %}
+        <p class="form-error">{{ form.password2.errors.0 }}</p>
+        {% endif %} {% for error in form.non_field_errors %}
+        <p class="form-error">{{ error }}</p>
+        {% endfor %}
+
+        <button type="submit" class="login-button">Register</button>
+      </form>
+
+      <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
+    </div>
+  </body>
+</html>
