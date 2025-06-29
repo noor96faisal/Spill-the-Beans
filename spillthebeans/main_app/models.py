@@ -15,10 +15,14 @@ class Profile(models.Model):
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
+    icon = models.ImageField(upload_to='category_icons/', blank=True, null=True)
+
+    class Meta:
+        verbose_name_plural = "Categories"
 
     def __str__(self):
         return self.name
-    
+
 class Recipe(models.Model):
     instructions = models.TextField()
     is_iced = models.BooleanField(default=False)

@@ -11,10 +11,22 @@
       rel="stylesheet"
     />
   </head>
-
   <body>
-    <!-- found this cute emoji here "https://emojidb.org/coffee-emojis" -->
     <header>Spill the Beans☕︎</header>
+
+    <div class="category-list">
+      {% for category in categories %}
+      <div class="category">
+        {% if category.icon %}
+        <img
+          src="{{ category.icon.url }}"
+          alt="{{ category.name }}"
+          class="category-icon"
+        />
+        {% endif %} {{ category.name }}
+      </div>
+      {% endfor %}
+    </div>
 
     <div class="method-list">
       {% for method in methods %}
@@ -27,11 +39,12 @@
       </div>
       {% endfor %}
     </div>
+
     <a
       href="{% url 'add_recipe' %}"
       class="add-button"
       title="Add a new recipe!"
-      >☕️</a
+      >⛾</a
     >
   </body>
 </html>

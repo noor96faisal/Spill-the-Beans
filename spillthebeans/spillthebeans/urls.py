@@ -22,3 +22,4 @@ urlpatterns = [
     path('', include('main_app.urls')),
 
 ]
+
