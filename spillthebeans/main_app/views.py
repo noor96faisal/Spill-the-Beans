@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.shortcuts import redirect
 from .models import BrewingMethod, Category 
 
 def home(request):
