@@ -5,56 +5,16 @@
     <meta charset="UTF-8" />
     <title>Choose a Method</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <style>
-      body {
-        font-family: sans-serif;
-        margin: 0;
-        background-color: #f5f5f5;
-      }
-      header {
-        background-color: #6f4e37;
-        color: white;
-        padding: 1rem;
-        text-align: center;
-        font-size: 1.5rem;
-      }
-      .method-list {
-        padding: 1rem;
-      }
-      .method {
-        background: white;
-        margin-bottom: 0.5rem;
-        padding: 1rem;
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      }
-      .method img {
-        width: 40px;
-        height: 40px;
-        margin-right: 1rem;
-      }
-      .add-button {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        background-color: #6f4e37;
-        color: white;
-        border: none;
-        border-radius: 50%;
-        width: 60px;
-        height: 60px;
-        font-size: 2rem;
-        text-align: center;
-        line-height: 60px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      }
-    </style>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap"
+      rel="stylesheet"
+    />
   </head>
+
   <body>
     <!-- found this cute emoji here "https://emojidb.org/coffee-emojis" -->
-    <header>(っ-,-)つSpill the Beans☕</header>
+    <header>Spill the Beans☕︎</header>
 
     <div class="method-list">
       {% for method in methods %}
@@ -67,6 +27,11 @@
       </div>
       {% endfor %}
     </div>
-    <a href="{% url 'add_recipe' %}" class="add-button">+</a>
+    <a
+      href="{% url 'add_recipe' %}"
+      class="add-button"
+      title="Add a new recipe!"
+      >☕️</a
+    >
   </body>
 </html>
