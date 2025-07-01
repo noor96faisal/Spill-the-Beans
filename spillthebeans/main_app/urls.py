@@ -6,7 +6,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('recipes/', views.recipe_list, name='recipe_list'),
     path('add/', views.add_recipe, name='add_recipe'),
-    path('register/', views.register, name='signup'),  # ✅ changed name from 'register' to 'signup'
+    path('register/', views.register, name='signup'),  
     path('categories/<int:pk>/', views.category_detail, name='category_detail'),
     path(
         'accounts/login/',
@@ -14,5 +14,7 @@ urlpatterns = [
         name='login'
     ),
     path('profile/', views.profile_view, name='profile'),
+    path('recipe/<int:pk>/delete/', views.delete_recipe, name='delete_recipe'),
+
 
 ]

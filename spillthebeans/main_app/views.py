@@ -4,6 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Recipe, BrewingMethod, Category
 from .forms import RecipeForm
+from django.shortcuts import get_object_or_404
+
 
 
 def home(request):
@@ -31,26 +33,17 @@ def add_recipe(request):
     return render(request, 'main_app/add_recipe.html', {'form': form})
 
 
-# def register(request):
-#     if request.method == 'POST':
-#         form = UserCreationForm(request.POST)
-#         if form.is_valid():
-#             user = form.save()
-#             login(request, user)
-#             return redirect('home')
-#     else:
-#         form = UserCreationForm()
-#     return render(request, 'main_app/register.html', {'form': form})
+
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
-            print("✅ User logged in:", user.username)
+            print("User logged in:", user.username)
             return redirect('home')
         else:
-            print("❌ Form errors:", form.errors)
+            print("Form errors:", form.errors)
     else:
         form = UserCreationForm()
     return render(request, 'main_app/register.html', {'form': form})
@@ -73,3 +66,10 @@ def login_view(request):
 
 def profile_view(request):
     return render(request, 'main_app/profile.html', {'user': request.user})
+
+def delete_recipe(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    if request.method == 'POST':
+        recipe.delete()
+        return redirect('recipe_list')
+    return render(request, 'main_app/confirm_delete.html', {'recipe': recipe})

@@ -10,6 +10,13 @@
         <h3>{{ recipe.title }}</h3>
         <p>Category: {{ recipe.category.name }}</p>
         <p>Instructions: {{ recipe.instructions|linebreaks }}</p>
+
+        {% if user.is_authenticated %}
+          <form action="{% url 'delete_recipe' recipe.pk %}" method="post" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="delete-button">🗑️</button>
+          </form>
+        {% endif %}
       </li>
     {% empty %}
       <li>No recipes yet.</li>
