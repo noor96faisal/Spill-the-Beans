@@ -22,17 +22,19 @@ def recipe_list(request):
     return render(request, 'main_app/recipe_list.html', {'recipes': recipes})
 
 
+
+@login_required
 def add_recipe(request):
     if request.method == 'POST':
         form = RecipeForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            recipe = form.save(commit=False)
+            recipe.author = request.user  
+            recipe.save()
             return redirect('recipe_list')
     else:
         form = RecipeForm()
     return render(request, 'main_app/add_recipe.html', {'form': form})
-
-
 
 def register(request):
     if request.method == 'POST':

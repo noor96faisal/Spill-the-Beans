@@ -11,7 +11,7 @@
         <p>Category: {{ recipe.category.name }}</p>
         <p>Instructions: {{ recipe.instructions|linebreaks }}</p>
 
-        {% if user.is_authenticated %}
+        {% if user.is_authenticated and recipe.author == user %}
           <form action="{% url 'delete_recipe' recipe.pk %}" method="post" style="display:inline;">
             {% csrf_token %}
             <button type="submit" class="delete-button">🗑️</button>
