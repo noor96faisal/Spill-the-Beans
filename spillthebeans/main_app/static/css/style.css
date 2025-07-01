@@ -2,8 +2,7 @@
 body {
   font-family: 'Segoe UI', sans-serif;
   margin: 0;
-  background: url('../images/coffee_background.jpg') no-repeat center center
-    fixed;
+  background: url('../images/coffee_background.jpg') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -18,72 +17,62 @@ header {
   letter-spacing: 1px;
 }
 
-/* Brewing Method Grid */
-.method-grid {
+/* Grid Layout for Methods and Categories */
+.method-grid,
+.category-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-  gap: 1.5rem;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2rem;
   padding: 2rem;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
+  border-radius: 12px;
 }
 
-.method-card {
-  background: white;
-  border-radius: 1rem;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-  text-align: center;
-  padding: 1rem;
-  transition: transform 0.2s ease;
+/* Card Style for Methods and Categories */
+.method-card,
+.category-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
-.method-card:hover {
+.method-card:hover,
+.category-card:hover {
   transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.method-card img {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 0.5rem;
+/* Image Style with Hover Animation */
+.method-card img,
+.category-card img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 0.8rem;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
 }
 
-.method-card span {
-  font-size: 0.9rem;
-  font-weight: 500;
+.method-card:hover img,
+.category-card:hover img {
+  filter: grayscale(0%);
+}
+
+/* Title Text with Hover Animation */
+.method-card span,
+.category-card span {
+  font-size: 1.1rem;
+  font-weight: 600;
   color: #4b3621;
+  transition: color 0.3s ease;
 }
 
-/* Category Tags */
-.category-list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.5rem;
-  margin: 1rem auto;
-  max-width: 90%;
-}
-
-.category {
-  background-color: #e0d6cf;
-  color: #4b3621;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-weight: 500;
-  font-size: 0.9rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  display: flex;
-  align-items: center;
-}
-
-.category-icon {
-  width: 20px;
-  height: 20px;
-  margin-right: 0.5rem;
-  vertical-align: middle;
+.method-card:hover span,
+.category-card:hover span {
+  color: #8b5e3c;
 }
 
 /* Add Button */
@@ -191,4 +180,72 @@ header {
   color: #a94442;
   font-size: 0.9rem;
   margin: 0.3rem 0 0.8rem;
+}
+
+/* Category Detail Page */
+.category-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.category-icon {
+  max-width: 200px;
+  display: block;
+  margin: 0 auto 1rem;
+}
+
+.category-description {
+  font-size: 1.1rem;
+  color: #444;
+  text-align: center;
+}
+
+.top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #6f4e37; /* coffee brown */
+  color: #fff;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.site-header {
+  font-family: 'Pacifico', cursive;
+  font-size: 2rem;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.auth-links {
+  font-size: 0.95rem;
+}
+
+.auth-links a,
+.auth-links span,
+.logout-button {
+  color: #fff;
+  margin-left: 0.75rem;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.logout-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  text-decoration: underline;
+}
+
+.form-error {
+  color: #a94442;
+  font-size: 0.95rem;
+  margin-bottom: 1rem;
+}
+
+.helptext {
+  display: none;
 }

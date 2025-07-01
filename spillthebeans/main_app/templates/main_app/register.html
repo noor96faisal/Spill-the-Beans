@@ -1,54 +1,33 @@
-{% load static %}
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Register</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-  <body>
-    <div class="login-container">
-      <h2>Create an Account ☕</h2>
+{% extends 'base.html' %}
 
-      <form method="post">
-        {% csrf_token %}
+{% block title %}Register{% endblock %}
 
-        <input
-          type="text"
-          name="username"
-          placeholder="Username"
-          value="{{ form.username.value|default:'' }}"
-          required
-        />
-        {% if form.username.errors %}
-        <p class="form-error">{{ form.username.errors.0 }}</p>
-        {% endif %}
+{% block content %}
+  <div class="login-container">
+    <h2>Register</h2>
+    <form method="post">
+      {% csrf_token %}
 
-        <input
-          type="password"
-          name="password1"
-          placeholder="Password"
-          required
-        />
-        {% if form.password1.errors %}
-        <p class="form-error">{{ form.password1.errors.0 }}</p>
-        {% endif %}
+      {% if form.errors %}
+        <div class="form-error">
+          {{ form.errors }}
+        </div>
+      {% endif %}
 
-        <input
-          type="password"
-          name="password2"
-          placeholder="Confirm Password"
-          required
-        />
-        {% if form.password2.errors %}
-        <p class="form-error">{{ form.password2.errors.0 }}</p>
-        {% endif %} {% for error in form.non_field_errors %}
-        <p class="form-error">{{ error }}</p>
-        {% endfor %}
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+      </div>
+      <div class="form-group">
+        {{ form.password1.label_tag }}
+        {{ form.password1 }}
+      </div>
+      <div class="form-group">
+        {{ form.password2.label_tag }}
+        {{ form.password2 }}
+      </div>
 
-        <button type="submit" class="login-button">Register</button>
-      </form>
-
-      <p>Already have an account? <a href="{% url 'login' %}">Log in</a></p>
-    </div>
-  </body>
-</html>
+      <button type="submit" class="login-button">Register</button>
+    </form>
+  </div>
+{% endblock %}

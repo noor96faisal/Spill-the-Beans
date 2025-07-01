@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block title %}All Recipes{% endblock %}
+
+{% block content %}
+  <h2>All Recipes</h2>
+  <ul class="recipe-list">
+    {% for recipe in recipes %}
+      <li>
+        <h3>{{ recipe.title }}</h3>
+        <p>Category: {{ recipe.category.name }}</p>
+        <p>Instructions: {{ recipe.instructions|linebreaks }}</p>
+      </li>
+    {% empty %}
+      <li>No recipes yet.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

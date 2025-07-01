@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}Spill the Beans{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link rel="icon" href="{% static 'images/favicon.ico' %}" type="image/x-icon">
+</head>
+<body>
+  <header class="top-bar">
+    <div class="site-header">Spill the Beans☕︎</div>
+    <div class="auth-links">
+      {% if user.is_authenticated %}
+        <span>
+          Welcome, {{ user.username }} |
+          <a href="{% url 'profile' %}">Profile</a> |
+          <form action="{% url 'logout' %}" method="post" class="logout-form" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" class="logout-button">Log out</button>
+          </form>
+        </span>
+      {% else %}
+        <a href="{% url 'login' %}">Log in</a>
+      {% endif %}
+    </div>
+  </header>
+
+  <main class="main-container">
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>

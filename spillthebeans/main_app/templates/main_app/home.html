@@ -1,56 +1,32 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Choose a Method</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet" />
-  </head>
-  <body>
-    <header>Spill the Beans☕︎</header>
+{% extends 'base.html' %}
 
-    <!-- Auth -->
-    <div class="auth-links">
-      {% if user.is_authenticated %}
-        <p>
-          Welcome, {{ user.username }} |
-          <form action="{% url 'logout' %}" method="post" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" class="logout-button">Log out</button>
-          </form>
-        </p>
-      {% else %}
-        <a href="{% url 'login' %}">Log in</a>
-      {% endif %}
-    </div>
+{% block title %}Home{% endblock %}
 
-    <!-- Brewing Methods -->
-    <div class="method-grid">
-      {% for method in methods %}
-        <div class="method-card">
-          {% if method.icon %}
-            <img src="{{ method.icon.url }}" alt="{{ method.name }}">
-          {% endif %}
-          <span>{{ method.name }}</span>
-        </div>
-      {% endfor %}
-    </div>
+{% block content %}
+  <div class="category-grid">
+    {% for category in categories %}
+      <a href="{% url 'category_detail' category.pk %}" class="category-card">
+        <img src="{{ category.icon.url }}" alt="{{ category.name }}">
+        <span>{{ category.name }}</span>
+      </a>
+    {% endfor %}
+  </div>
 
-    <!-- Categories -->
-    <div class="category-list">
-      {% for category in categories %}
-        <div class="category">
-          {% if category.icon %}
-            <img src="{{ category.icon.url }}" class="category-icon" />
-          {% endif %}
-          {{ category.name }}
-        </div>
-      {% endfor %}
-    </div>
+<div class="view-recipes-link">
+  {% if user.is_authenticated %}
+    <a href="{% url 'recipe_list' %}" class="view-recipes-button" title="View all recipes">☕︎ View Recipes</a>
+  {% else %}
+    <a href="{% url 'login' %}" class="view-recipes-button" title="Log in to view recipes">☕</a>
+  {% endif %}
+  
+</div>
 
-    <!-- Add Recipe Button -->
-    <a href="{% url 'add_recipe' %}" class="add-button" title="Add a new recipe!">⛾</a>
-  </body>
-</html>
+
+
+  <div class="floating-buttons">
+    <a href="{% url 'add_recipe' %}" class="add-button" title="Add a new recipe!">+</a>
+    {% if not user.is_authenticated %}
+      <a href="{% url 'login' %}" class="add-button" title="Log in to view and add other recipes">⛾</a>
+    {% endif %}
+  </div>
+{% endblock %}

@@ -1,22 +1,34 @@
-{% load static %}
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Login</title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
-  </head>
-  <body>
-    <div class="login-container">
-      <h2>Welcome Back ☕</h2>
-      <p>
-        Don't have an account? <a href="{% url 'register' %}">Register here</a>
-      </p>
+{% extends 'base.html' %}
 
-      <form method="post">
-        {% csrf_token %} {{ form.as_p }}
-        <button type="submit" class="login-button">Log in</button>
-      </form>
-    </div>
-  </body>
-</html>
+
+{% load static %}
+
+{% block title %}Log In | Spill the Beans{% endblock %}
+
+{% block content %}
+  <div class="login-container">
+    <h2 class="login-heading">Welcome Back</h2>
+    <form method="post" class="login-form">
+      {% csrf_token %}
+      {{ form.non_field_errors }}
+      
+      <div class="form-group">
+        {{ form.username.label_tag }}
+        {{ form.username }}
+        {{ form.username.errors }}
+      </div>
+
+      <div class="form-group">
+        {{ form.password.label_tag }}
+        {{ form.password }}
+        {{ form.password.errors }}
+      </div>
+
+      <button type="submit" class="login-button">Log In</button>
+    </form>
+
+    <p class="signup-link">
+      Don't have an account? <a href="{% url 'signup' %}">Sign up</a>
+    </p>
+  </div>
+{% endblock %}

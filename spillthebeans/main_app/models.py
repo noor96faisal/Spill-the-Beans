@@ -16,15 +16,17 @@ class Profile(models.Model):
 class Category(models.Model):
     name = models.CharField(max_length=100)
     icon = models.ImageField(upload_to='category_icons/', blank=True, null=True)
-
+    description = models.TextField(blank=True, null=True)  
 
     def __str__(self):
         return self.name
 
+
 class Recipe(models.Model):
+    title = models.CharField(max_length=200)
     instructions = models.TextField()
-    is_iced = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='recipes') 
+
 
     def __str__(self):
         return f"{self.category.name} Recipe"
@@ -43,3 +45,4 @@ class Reaction(models.Model):
 
     def  __str__(self):
         return f"{'Like' if self.like else 'Dislike'} by {self.profile.username}"
+    

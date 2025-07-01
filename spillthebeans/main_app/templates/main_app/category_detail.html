@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+  <h2 class="category-title">{{ category.name }}</h2>
+
+  {% if category.icon %}
+    <img src="{{ category.icon.url }}" alt="{{ category.name }}" class="category-icon">
+  {% endif %}
+
+  {% if category.description %}
+    <p class="category-description">{{ category.description }}</p>
+  {% else %}
+    <p class="category-description">No description available for this category.</p>
+  {% endif %}
+{% endblock %}
