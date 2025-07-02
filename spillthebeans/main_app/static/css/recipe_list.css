@@ -1,0 +1,91 @@
+/* Base */
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f9f4ef;
+  color: #3e2c23;
+  margin: 0;
+  padding: 0;
+  
+}
+
+/* Page Title */
+h2 {
+  text-align: center;
+  font-size: 36px;
+  color: #6a4a3c;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  font-family: 'Pacifico', cursive;
+}
+
+/* Recipe List */
+.recipe-list {
+  list-style: none;
+  padding: 0 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.recipe-list li {
+  background-color: #fff9f5;
+  border: 1px solid #ecd9d1;
+  border-left: 5px solid #b77b57;
+  padding: 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.04);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  text-align: center;
+}
+
+.recipe-list li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 25px rgba(0, 0, 0, 0.07);
+}
+
+/* Recipe Title */
+.recipe-list h3 {
+  margin-top: 0;
+  font-size: 24px;
+  color: #5a3220;
+}
+
+/* Paragraphs */
+.recipe-list p {
+  margin: 10px 0;
+  font-size: 15px;
+  color: #4a2f1c;
+}
+
+/* Like & Delete Buttons */
+.like-button,
+.delete-button {
+  background-color: #d3a17e;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-right: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.like-button:hover {
+  background-color: #bc8969;
+}
+
+.delete-button {
+  background-color: #c24848;
+}
+
+.delete-button:hover {
+  background-color: #a93b3b;
+}
+
+/* Empty List */
+.recipe-list li:only-child {
+  text-align: center;
+  color: #9c7c66;
+  font-style: italic;
+}

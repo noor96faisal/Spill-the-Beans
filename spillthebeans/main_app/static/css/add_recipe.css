@@ -1,0 +1,74 @@
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #fdf6f0;
+  color: #3e2c23;
+  margin: 0;
+  padding: 0;
+}
+
+.add-recipe-wrapper {
+  max-width: 700px;
+  margin: 0 auto 60px auto;
+  padding: 40px;
+  background-color: #fffdfb;
+  border-radius: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  border-left: 6px solid #b77b57;
+}
+
+.add-recipe-wrapper h2 {
+  text-align: center;
+  font-size: 32px;
+  color: #6b4a3a;
+  margin-bottom: 30px;
+  font-family: 'Pacifico', cursive;
+}
+
+.add-recipe-wrapper form p {
+  margin-bottom: 20px;
+}
+
+.add-recipe-wrapper form label {
+  display: block;
+  font-weight: bold;
+  color: #5a3220;
+  margin-bottom: 6px;
+}
+
+.add-recipe-wrapper form input[type="text"],
+.add-recipe-wrapper form input[type="file"],
+.add-recipe-wrapper form textarea,
+.add-recipe-wrapper form select {
+  width: 100%;
+  padding: 12px 16px;
+  border-radius: 8px;
+  border: 1px solid #d6c4b8;
+  background-color: #fffaf7;
+  font-size: 15px;
+  color: #3e2c23;
+  transition: border 0.3s ease;
+}
+
+.add-recipe-wrapper form input:focus,
+.add-recipe-wrapper form textarea:focus,
+.add-recipe-wrapper form select:focus {
+  border-color: #b77b57;
+  outline: none;
+}
+
+.add-recipe-wrapper .login-button {
+  display: block;
+  margin: 30px auto 0;
+  padding: 12px 28px;
+  font-size: 16px;
+  background-color: #a47148;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-recipe-wrapper .login-button:hover {
+  background-color: #8d5e39;
+}

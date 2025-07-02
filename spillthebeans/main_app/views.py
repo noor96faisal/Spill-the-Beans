@@ -66,8 +66,6 @@ def login_view(request):
     return render(request, "login.html", {"form": form})
 
 
-# def profile_view(request):
-#     return render(request, 'main_app/profile.html', {'user': request.user})
 
 @login_required
 def profile(request):

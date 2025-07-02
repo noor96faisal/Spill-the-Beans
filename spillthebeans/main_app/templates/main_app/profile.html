@@ -1,28 +1,33 @@
-{% load static %}
-<link rel="stylesheet" href="{% static 'css/profile.css' %}">
-
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Profile{% endblock %}
 
+{% block extra_css %}
+  <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
 {% block content %}
-  <h2>{{ user.username }}'s Profile</h2>
-  <p>Email: {{ user.email }}</p>
-  <p>First name: {{ user.first_name }}</p>
-  <p>Last name: {{ user.last_name }}</p>
+  <div class="profile-container">
+    <h1>{{ user.username }}'s Profile</h1>
+    <div class="profile-info">
+      <p><strong>Email:</strong> {{ user.email }}</p>
+      <p><strong>First name:</strong> {{ user.first_name }}</p>
+      <p><strong>Last name:</strong> {{ user.last_name }}</p>
+    </div>
 
-  <a href="{% url 'edit_profile' %}" class="edit-button">✏️ Edit Profile</a>
+    <a href="{% url 'edit_profile' %}" class="edit-button">Edit </a>
 
-  <h2>Your Recipes</h2>
-  <ul class="recipe-list">
-    {% for recipe in user_recipes %}
-      <li>
-        <h3>{{ recipe.title }}</h3>
-        <p>Category: {{ recipe.category.name }}</p>
-        <p>Instructions: {{ recipe.instructions|linebreaks }}</p>
-      </li>
-    {% empty %}
-      <li>You haven't added any recipes yet.</li>
-    {% endfor %}
-  </ul>
+    <h2>Your Recipes</h2>
+    <ul class="recipe-list">
+      {% for recipe in user_recipes %}
+        <li class="recipe-card">
+          <h3>{{ recipe.title }}</h3>
+          <p><strong>Category:</strong> {{ recipe.category.name }}</p>
+          <p><strong>Instructions:</strong> {{ recipe.instructions|linebreaks }}</p>
+        </li>
+      {% empty %}
+        <li class="no-recipes">You haven't added any recipes yet.</li>
+      {% endfor %}
+    </ul>
+  </div>
 {% endblock %}
