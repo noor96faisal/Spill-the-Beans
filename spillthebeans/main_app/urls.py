@@ -13,8 +13,10 @@ urlpatterns = [
         auth_views.LoginView.as_view(template_name='main_app/login.html'),
         name='login'
     ),
-    path('profile/', views.profile_view, name='profile'),
+    path('profile/', views.profile, name='profile'),  
     path('recipe/<int:pk>/delete/', views.delete_recipe, name='delete_recipe'),
+    path('recipe/<int:pk>/like/', views.like_recipe, name='like_recipe'),
+    path('profile/edit/', views.edit_profile, name='edit_profile'),
 
 
 ]

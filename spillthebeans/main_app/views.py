@@ -4,8 +4,8 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from .models import Recipe, BrewingMethod, Category
 from .forms import RecipeForm
-from django.shortcuts import get_object_or_404
-
+from .forms import EditProfileForm
+from django.contrib import messages
 
 
 def home(request):
@@ -66,8 +66,15 @@ def login_view(request):
     return render(request, "login.html", {"form": form})
 
 
-def profile_view(request):
-    return render(request, 'main_app/profile.html', {'user': request.user})
+# def profile_view(request):
+#     return render(request, 'main_app/profile.html', {'user': request.user})
+
+@login_required
+def profile(request):
+    user_recipes = Recipe.objects.filter(author=request.user)
+    return render(request, 'main_app/profile.html', {
+        'user_recipes': user_recipes
+    })
 
 def delete_recipe(request, pk):
     recipe = get_object_or_404(Recipe, pk=pk)
@@ -75,3 +82,25 @@ def delete_recipe(request, pk):
         recipe.delete()
         return redirect('recipe_list')
     return render(request, 'main_app/confirm_delete.html', {'recipe': recipe})
+
+@login_required
+def like_recipe(request, pk):
+    recipe = get_object_or_404(Recipe, pk=pk)
+    if request.user in recipe.liked_by.all():
+        recipe.liked_by.remove(request.user)  
+    else:
+        recipe.liked_by.add(request.user)     
+    return redirect('recipe_list')
+
+
+@login_required
+def edit_profile(request):
+    if request.method == 'POST':
+        form = EditProfileForm(request.POST, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Profile updated successfully!')
+            return redirect('profile')
+    else:
+        form = EditProfileForm(instance=request.user)
+    return render(request, 'main_app/edit_profile.html', {'form': form})

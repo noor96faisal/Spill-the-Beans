@@ -1,3 +1,6 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/profile.css' %}">
+
 {% extends 'base.html' %}
 
 {% block title %}Profile{% endblock %}
@@ -7,4 +10,19 @@
   <p>Email: {{ user.email }}</p>
   <p>First name: {{ user.first_name }}</p>
   <p>Last name: {{ user.last_name }}</p>
+
+  <a href="{% url 'edit_profile' %}" class="edit-button">✏️ Edit Profile</a>
+
+  <h2>Your Recipes</h2>
+  <ul class="recipe-list">
+    {% for recipe in user_recipes %}
+      <li>
+        <h3>{{ recipe.title }}</h3>
+        <p>Category: {{ recipe.category.name }}</p>
+        <p>Instructions: {{ recipe.instructions|linebreaks }}</p>
+      </li>
+    {% empty %}
+      <li>You haven't added any recipes yet.</li>
+    {% endfor %}
+  </ul>
 {% endblock %}

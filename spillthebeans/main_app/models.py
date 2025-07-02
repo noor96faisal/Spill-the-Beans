@@ -34,7 +34,9 @@ class Recipe(models.Model):
     instructions = models.TextField()
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     method = models.ForeignKey(BrewingMethod, on_delete=models.CASCADE)
-    author = models.ForeignKey(User, on_delete=models.CASCADE)  
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    liked_by = models.ManyToManyField(User, related_name='liked_recipes', blank=True)
+
 
     def __str__(self):
         return self.title
