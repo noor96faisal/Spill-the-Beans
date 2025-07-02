@@ -9,11 +9,11 @@
 ## 📸 Screenshots
 
 
-- ![Home Page](Screenshot 2025-07-02 173319.png)
+- !![Home Page](https://github.com/noor96faisal/Spill-the-Beans/blob/main/Screenshot%202025-07-02%20173319.png?raw=true)
 
 ---
 ## ERD
-- ![ERD](new erd.jpg)
+- ![ERD](https://github.com/noor96faisal/Spill-the-Beans/blob/main/new%20erd.jpg?raw=true)
 
 
 ---
